@@ -14,6 +14,15 @@ CREATE TABLE IF NOT EXISTS users.users (
     updated_at TIMESTAMP 
 );
 
+-- Tabela de estúdios no schema 'studios'
+CREATE TABLE IF NOT EXISTS studios.studios (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP
+);
+
+
 -- Tabela de tatuadores no schema 'studios'
 CREATE TABLE IF NOT EXISTS tattoo_artists.tattoo_artists (
     id SERIAL PRIMARY KEY,
@@ -23,13 +32,6 @@ CREATE TABLE IF NOT EXISTS tattoo_artists.tattoo_artists (
     updated_at TIMESTAMP
 );
 
--- Tabela de estúdios no schema 'studios'
-CREATE TABLE IF NOT EXISTS studios.studios (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP
-);
 
 -- Relacionamento entre usuários e estúdios (opcional)
 -- Adiciona uma coluna no esquema 'auth' para indicar a associação de um usuário ao seu estúdio (caso aplicável)
