@@ -38,6 +38,6 @@ export class TattooArtistRepository {
   }
 
   async delete(id: number) {
-    return await this.tattooArtistRepository.delete({ id });
+    return await this.tattooArtistRepository.softRemove({ id });
   }
 }

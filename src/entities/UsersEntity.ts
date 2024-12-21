@@ -1,4 +1,5 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { StudiosEntity } from './StudiosEntity';
 import { TattooArtistEntity } from './TattooArtistEntity';
 
 @Entity({ schema: 'users', name: 'users' })
@@ -29,6 +30,9 @@ export class UsersEntity {
 
   @OneToMany(() => TattooArtistEntity, (tattooArtist) => tattooArtist.user)
   tattooArtists: TattooArtistEntity[];
+
+  @OneToMany(() => StudiosEntity, (studio) => studio.owner)
+  studios: StudiosEntity[];
 
   setRoles(roles: number[]) {
     this.roles = roles;

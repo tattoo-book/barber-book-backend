@@ -1,5 +1,5 @@
 // Create tattooArtistController crud
-import { Body, Controller, Logger, Post, Req, UseGuards, UsePipes } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Logger, Param, Post, Req, UseGuards, UsePipes } from '@nestjs/common';
 import { JoiPipe } from 'nestjs-joi';
 import { RequestDTO } from 'src/common/classes/DTOs/RequestDTO';
 import { ResponseDTO } from 'src/common/classes/DTOs/ResponseDTO';
@@ -28,25 +28,36 @@ export class TattooArtistController {
     }
   }
 
-  //   @Get()
-  //   async findAll() {
-  //     try {
-  //       const tattooArtists = await this.tattooArtistService.findAll();
-  //       return ResponseDTO.OK('Success on find all tattoo artist', tattooArtists);
-  //     } catch (error) {
-  //       const errorDescription = ErrorHandler.execute(TattooArtistController.logger, 'Failed on find all tattoo artist', error);
-  //       return new ResponseErrorDTO(error.status, 'Failed on find all tattoo artist', errorDescription);
-  //     }
-  //   }
+  @Get()
+  async findAll() {
+    try {
+      const tattooArtists = await this.tattooArtistService.findAll();
+      return ResponseDTO.OK('Success on find all tattoo artist', tattooArtists);
+    } catch (error) {
+      const errorDescription = ErrorHandler.execute(TattooArtistController.logger, 'Failed on find all tattoo artist', error);
+      return new ResponseErrorDTO(error.status, 'Failed on find all tattoo artist', errorDescription);
+    }
+  }
 
-  //   @Get(':id')
-  //   async findOne(@Param('id') id: string) {
-  //     try {
-  //       const tattooArtist = await this.tattooArtistService.findOne(+id);
-  //       return ResponseDTO.OK(`Success on find tattoo artist with id ${id}`, tattooArtist);
-  //     } catch (error) {
-  //       const errorDescription = ErrorHandler.execute(TattooArtistController.logger, 'Failed in list tattoo artist', error);
-  //       return new ResponseErrorDTO(error.status, 'Failed on find all tattoo artist', errorDescription);
-  //     }
-  //   }
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    try {
+      const tattooArtist = await this.tattooArtistService.findOne(+id);
+      return ResponseDTO.OK(`Success on find tattoo artist with id ${id}`, tattooArtist);
+    } catch (error) {
+      const errorDescription = ErrorHandler.execute(TattooArtistController.logger, 'Failed in list tattoo artist', error);
+      return new ResponseErrorDTO(error.status, 'Failed on find all tattoo artist', errorDescription);
+    }
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    try {
+      const tattooArtist = await this.tattooArtistService.delete(+id);
+      return ResponseDTO.OK(`Success on delete tattoo artist with id ${id}`, tattooArtist);
+    } catch (error) {
+      const errorDescription = ErrorHandler.execute(TattooArtistController.logger, `Failed on delete tattoo artist with id ${id}`, error);
+      return new ResponseErrorDTO(error.status, `Failed on delete tattoo artist with id ${id}`, errorDescription);
+    }
+  }
 }
