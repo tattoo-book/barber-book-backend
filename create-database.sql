@@ -1,8 +1,8 @@
 --- Criar os schemas ---
 -- CREATE SCHEMA IF NOT EXISTS auth;
 CREATE SCHEMA IF NOT EXISTS users;
-CREATE SCHEMA IF NOT EXISTS tattoo_artists;
-CREATE SCHEMA IF NOT EXISTS studios;
+CREATE SCHEMA IF NOT EXISTS barbers;
+CREATE SCHEMA IF NOT EXISTS barber_shops;
 CREATE SCHEMA IF NOT EXISTS roles;
 
 --- Tabela de usuários no schema 'users' ---
@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS users.users (
     updated_at TIMESTAMP 
 );
 
---- Tabela de tatuadores no schema 'studios' ---
-CREATE TABLE IF NOT EXISTS tattoo_artists.tattoo_artists (
+--- Tabela de tatuadores no schema 'barber_shops' ---
+CREATE TABLE IF NOT EXISTS barbers.barbers (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     name VARCHAR(100) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS roles.roles (
     CONSTRAINT pk_roles PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS studios.studios (
+CREATE TABLE IF NOT EXISTS barber_shops.barber_shops (
 	id serial NOT NULL,
 	name varchar(200) NOT NULL,
     owner_id integer NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS studios.studios (
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
     
-    CONSTRAINT pk_studios PRIMARY KEY (id),
+    CONSTRAINT pk_barber_shops PRIMARY KEY (id),
     CONSTRAINT fk_user FOREIGN KEY (owner_id) REFERENCES users.users(id)
 );
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS studios.studios (
 --ALTER TABLE users.users ALTER COLUMN roles SET NOT NULL;
 
 -- inserts
---INSERT INTO roles.roles(id, role) values(1, 'admin'), (2, 'default'), (3, 'tattoo_artists')
+--INSERT INTO roles.roles(id, role) values(1, 'admin'), (2, 'default'), (3, 'barbers')
 
 
 
