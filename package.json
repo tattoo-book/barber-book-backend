@@ -7,6 +7,10 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "nest start --watch",
+    "docker-build": "docker build -t tattoo-book-backend:1.0 .",
+    "docker-run": "docker run --env-file=.env --name tattoo-book-backend tattoo-book-backend:1.0",
+    "docker-connect-network-container": "docker network connect tattoo-book-network tattoo-book-database && docker network connect tattoo-book-network tattoo-book-backend",
+    "docker-create-network": "docker network create tattoo-book-network",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
