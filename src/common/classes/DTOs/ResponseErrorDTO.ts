@@ -4,7 +4,7 @@ export class ResponseErrorDTO<T> {
   description: T;
 
   constructor(status: number, msg: string, description: T) {
-    this.status = status;
+    this.status = status || 400;
     this.message = msg;
     this.description = description;
   }

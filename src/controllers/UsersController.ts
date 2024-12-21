@@ -20,7 +20,7 @@ export class UsersController {
       return ResponseDTO.OK('Success on create user', user);
     } catch (error) {
       const errorDescription = ErrorHandler.execute(UsersController.logger, 'Failed on create user', error);
-      return new ResponseErrorDTO(error.status || 400, 'Failed on create user', errorDescription);
+      return new ResponseErrorDTO(error.status, 'Failed on create user', errorDescription);
     }
   }
 
@@ -31,7 +31,7 @@ export class UsersController {
       return ResponseDTO.OK('Success on find all user', users);
     } catch (error) {
       const errorDescription = ErrorHandler.execute(UsersController.logger, 'Failed on find all user', error);
-      return new ResponseErrorDTO(error.status || 400, 'Failed on find all user', errorDescription);
+      return new ResponseErrorDTO(error.status, 'Failed on find all user', errorDescription);
     }
   }
 
@@ -41,8 +41,8 @@ export class UsersController {
       const users = await this.usersService.findOne(+id);
       return ResponseDTO.OK(`Success on find user with id ${id}`, users);
     } catch (error) {
-      const errorDescription = ErrorHandler.execute(UsersController.logger, `Failed on find user with id ${id}`, error);
-      return new ResponseErrorDTO(error.status || 400, `Failed on find user with id ${id}`, errorDescription);
+      const errorDescription = ErrorHandler.execute(UsersController.logger, `Failed on find user`, error);
+      return new ResponseErrorDTO(error.status, `Failed on find user`, errorDescription);
     }
   }
 
@@ -57,8 +57,8 @@ export class UsersController {
       const user = await this.usersService.delete(+id);
       return ResponseDTO.OK(`Success on delete user with id ${id}`, user);
     } catch (error) {
-      const errorDescription = ErrorHandler.execute(UsersController.logger, `Failed on delete user with id ${id}`, error);
-      return new ResponseErrorDTO(error.status || 400, `Failed on delete user with id ${id}`, errorDescription);
+      const errorDescription = ErrorHandler.execute(UsersController.logger, `Failed on delete`, error);
+      return new ResponseErrorDTO(error.status, `Failed on delete`, errorDescription);
     }
   }
 }
