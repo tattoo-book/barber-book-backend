@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDTO } from 'src/common/classes/DTOs/users/CreateUserDTO';
 import { UsersEntity } from 'src/entities/UsersEntity';
@@ -10,7 +10,7 @@ export class UserRepository {
 
   async create(userCreateDTO: CreateUserDTO) {
     const emailAlreadyRegistered = await this.userRepository.findOne({ where: { email: userCreateDTO.email } });
-    if (emailAlreadyRegistered) throw new BadRequestException('Email alredy registered');
+    if (emailAlreadyRegistered) throw new ConflictException('Email alredy registered');
 
     const userEntity = this.userRepository.create(userCreateDTO);
     return await this.userRepository.save(userEntity);
