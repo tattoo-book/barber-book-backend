@@ -31,6 +31,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/typeorm": "^10.0.2",
     "joi": "^17.13.3",
+    "nestjs-i18n": "^10.5.0",
     "nestjs-joi": "^1.10.1",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.0",
