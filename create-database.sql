@@ -51,14 +51,14 @@ CREATE TABLE IF NOT EXISTS barber_shops.barber_shops (
 );
 
 -- alter tables
---ALTER TABLE users.users ADD COLUMN deleted_at timestamp;
---ALTER TABLE users.users ADD COLUMN roles INTEGER[];
---UPDATE users.users SET roles = ARRAY[2];
---ALTER TABLE users.users ALTER COLUMN roles SET DEFAULT ARRAY[2];
---ALTER TABLE users.users ALTER COLUMN roles SET NOT NULL;
+ALTER TABLE users.users ADD COLUMN deleted_at timestamp;
+ALTER TABLE users.users ADD COLUMN roles INTEGER[];
+UPDATE users.users SET roles = ARRAY[2];
+ALTER TABLE users.users ALTER COLUMN roles SET DEFAULT ARRAY[2];
+ALTER TABLE users.users ALTER COLUMN roles SET NOT NULL;
 
 -- inserts
---INSERT INTO roles.roles(id, role) values(1, 'admin'), (2, 'default'), (3, 'barbers')
+INSERT INTO roles.roles(id, role) values(1, 'admin'), (2, 'default'), (3, 'barbers')
 
 
 
