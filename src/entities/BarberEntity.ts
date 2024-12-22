@@ -1,5 +1,38 @@
+import { JoiSchema } from 'nestjs-joi';
+import { BookingSchema } from 'src/common/joi/schemas/bookings/Booking';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { UsersEntity } from './UsersEntity';
+
+export class BookingTimes {
+  @JoiSchema(BookingSchema.start.required())
+  start: string;
+
+  @JoiSchema(BookingSchema.start.required())
+  end: string;
+}
+
+export class Booking {
+  @JoiSchema(BookingSchema.daysWeek.required())
+  sunday: BookingTimes[];
+
+  @JoiSchema(BookingSchema.daysWeek.required())
+  monday: BookingTimes[];
+
+  @JoiSchema(BookingSchema.daysWeek.required())
+  tuesday: BookingTimes[];
+
+  @JoiSchema(BookingSchema.daysWeek.required())
+  wednesday: BookingTimes[];
+
+  @JoiSchema(BookingSchema.daysWeek.required())
+  thursday: BookingTimes[];
+
+  @JoiSchema(BookingSchema.daysWeek.required())
+  friday: BookingTimes[];
+
+  @JoiSchema(BookingSchema.daysWeek.required())
+  saturday: BookingTimes[];
+}
 
 @Entity('barbers', { schema: 'barbers' })
 export class BarberEntity {
@@ -24,4 +57,10 @@ export class BarberEntity {
   @ManyToOne(() => UsersEntity, (user) => user.Barbers)
   @JoinColumn({ name: 'user_id' })
   user: UsersEntity;
+
+  @Column('jsonb', {
+    nullable: true,
+    default: () => '{"sunday": [], "monday": [], "tuesday": [], "wednesday": [], "thursday": [], "friday": [], "saturday": []}\'::jsonb',
+  })
+  bookings: Booking;
 }
