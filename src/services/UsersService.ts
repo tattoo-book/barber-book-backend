@@ -1,28 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDTO } from 'src/common/classes/DTOs/users/CreateUserDTO';
+import { UserRepository } from 'src/repositories/UserRepository';
 
 type User = CreateUserDTO & { id: number };
 
 @Injectable()
 export class UsersService {
-  private users: User[] = [];
+  constructor(private readonly userRepository: UserRepository) {}
 
   async create(createUserDto: CreateUserDTO) {
-    const user: User = {
-      id: this.users.length + 1,
-      ...createUserDto,
-    };
-    this.users.push(user);
-    console.log(this.users);
-    return user;
+    return await this.userRepository.create(createUserDto);
   }
 
   async findAll() {
-    return this.users;
+    return this.userRepository.findAll();
   }
 
   async findOne(id: number) {
-    return await this.users.find((user) => user.id === id);
+    return this.userRepository.findOne(id);
   }
 
   //   update(id: number, updateUserDto: UpdateUserDto): User {
@@ -31,7 +26,7 @@ export class UsersService {
   //     return this.users[userIndex];
   //   }
 
-  //   remove(id: number): void {
-  //     this.users = this.users.filter((user) => user.id !== id);
-  //   }
+  async delete(id: number) {
+    return await this.userRepository.delete(id);
+  }
 }
