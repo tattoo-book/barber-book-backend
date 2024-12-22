@@ -1,8 +1,8 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { StudiosEntity } from './StudiosEntity';
-import { TattooArtistEntity } from './TattooArtistEntity';
+import { BarberEntity } from './BarberEntity';
+import { BarberShopsEntity } from './BarberShopsEntity';
 
-@Entity({ schema: 'users', name: 'users' })
+@Entity('users', { schema: 'users' })
 export class UsersEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -28,11 +28,11 @@ export class UsersEntity {
   @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp', nullable: true })
   deletedAt: Date;
 
-  @OneToMany(() => TattooArtistEntity, (tattooArtist) => tattooArtist.user)
-  tattooArtists: TattooArtistEntity[];
+  @OneToMany(() => BarberEntity, (Barber) => Barber.user)
+  Barbers: BarberEntity[];
 
-  @OneToMany(() => StudiosEntity, (studio) => studio.owner)
-  studios: StudiosEntity[];
+  @OneToMany(() => BarberShopsEntity, (BarberShop) => BarberShop.owner)
+  BarberShops: BarberShopsEntity[];
 
   setRoles(roles: number[]) {
     this.roles = roles;

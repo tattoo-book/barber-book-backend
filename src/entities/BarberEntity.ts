@@ -1,8 +1,8 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { UsersEntity } from './UsersEntity';
 
-@Entity('tattoo_artists', { schema: 'tattoo_artists' })
-export class TattooArtistEntity {
+@Entity('barbers', { schema: 'barbers' })
+export class BarberEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -21,7 +21,7 @@ export class TattooArtistEntity {
   @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp', nullable: true })
   deletedAt: Date;
 
-  @ManyToOne(() => UsersEntity, (user) => user.tattooArtists)
+  @ManyToOne(() => UsersEntity, (user) => user.Barbers)
   @JoinColumn({ name: 'user_id' })
   user: UsersEntity;
 }

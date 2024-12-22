@@ -10,6 +10,7 @@ export class DatabaseConfig {
       password: process.env.DB_PASSWORD as string,
       database: process.env.DB_NAME,
       entities: [],
+      logging: true,
       autoLoadEntities: true,
     };
   }

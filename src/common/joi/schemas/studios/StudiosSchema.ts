@@ -1,5 +1,5 @@
 import * as Joi from 'joi';
 
-export class StudiosSchema {
-  static studioName = Joi.string().min(1);
+export class BarberShopsSchema {
+  static BarberShopName = Joi.string().min(1);
 }
