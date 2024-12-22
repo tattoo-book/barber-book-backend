@@ -1,3 +1,4 @@
+import { BookingDTO } from 'src/common/classes/DTOs/booking/BookingDTO';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { UsersEntity } from './UsersEntity';
 
@@ -24,4 +25,14 @@ export class BarberEntity {
   @ManyToOne(() => UsersEntity, (user) => user.Barbers)
   @JoinColumn({ name: 'user_id' })
   user: UsersEntity;
+
+  @Column('jsonb', {
+    nullable: true,
+    default: () => '{"sunday": [], "monday": [], "tuesday": [], "wednesday": [], "thursday": [], "friday": [], "saturday": []}\'::jsonb',
+  })
+  bookings: BookingDTO;
+
+  setBookings(bookings: BookingDTO) {
+    this.bookings = bookings;
+  }
 }
